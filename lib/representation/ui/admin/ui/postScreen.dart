@@ -1,3 +1,6 @@
+import 'package:cotton_app/data/model/product/product_modal.dart';
+import 'package:cotton_app/data/services/admin/admin_services.dart';
+import 'package:cotton_app/representation/ui/account/widget/account.dart';
 import 'package:flutter/material.dart';
 import 'package:cotton_app/representation/ui/admin/ui/addproduct.dart';
 import 'package:cotton_app/representation/widget/loader.dart';
@@ -11,29 +14,29 @@ class PostsScreen extends StatefulWidget {
 
 class _PostsScreenState extends State<PostsScreen> {
   List<Product>? products;
-  // final AdminServices adminServices = AdminServices();
+  final AdminServices adminServices = AdminServices();
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   fetchAllProducts();
-  // }
+  @override
+  void initState() {
+    super.initState();
+    fetchAllProducts();
+  }
 
-  // fetchAllProducts() async {
-  //   products = await adminServices.fetchAllProducts(context);
-  //   setState(() {});
-  // }
+  fetchAllProducts() async {
+    products = await adminServices.fetchAllProducts(context);
+    setState(() {});
+  }
 
-  // void deleteProduct(Product product, int index) {
-  //   adminServices.deleteProduct(
-  //     context: context,
-  //     product: product,
-  //     onSuccess: () {
-  //       products!.removeAt(index);
-  //       setState(() {});
-  //     },
-  //   );
-  // }
+  void deleteProduct(Product product, int index) {
+    adminServices.deleteProduct(
+      context: context,
+      product: product,
+      onSuccess: () {
+        products!.removeAt(index);
+        setState(() {});
+      },
+    );
+  }
 
   void navigateToAddProduct() {
     Navigator.pushNamed(context, AddProductScreen.routeName);
@@ -52,12 +55,12 @@ class _PostsScreenState extends State<PostsScreen> {
           final productData = products![index];
           return Column(
             children: [
-              // SizedBox(
-              //   height: 140,
-              //   child: SingleProduct(
-              //     image: productData.images[0],
-              //   ),
-              //),
+              SizedBox(
+                height: 140,
+                child: SingleProduct(
+                  image: productData.images[0],
+                ),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -68,9 +71,8 @@ class _PostsScreenState extends State<PostsScreen> {
                       maxLines: 2,
                     ),
                   ),
-                  //deleteProduct(productData, index)
                   IconButton(
-                    onPressed: (){},
+                    onPressed: () => deleteProduct(productData, index),
                     icon: const Icon(
                       Icons.delete_outline,
                     ),
@@ -90,11 +92,4 @@ class _PostsScreenState extends State<PostsScreen> {
       FloatingActionButtonLocation.centerFloat,
     );
   }
-}
-
-class Product{
-  final String name;
-  final String desp;
-
-  Product({required this.name, required this.desp});
 }

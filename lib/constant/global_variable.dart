@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-String uri = 'http://192.168.110.170:3008';
+String uri = 'http://192.168.110.170:4000';
 //import thr ip address
 
 
@@ -22,4 +22,13 @@ class GlobalVariables {
   static const Color greyBackgroundCOlor = Color(0xffebecee);
   static var selectedNavBarColor = Colors.cyan[800]!;
   static const unselectedNavBarColor = Colors.black87;
+
+  static const List<String> carouselImages = [
+    'assets/ad.jpeg',
+    'assets/ad.jpeg',
+    'assets/ad.jpeg',
+    'assets/ad.jpeg',
+
+  ];
+
 }

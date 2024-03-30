@@ -1,3 +1,5 @@
+import 'package:cotton_app/data/model/admin_sales/sales_modal.dart';
+import 'package:cotton_app/data/services/admin/admin_services.dart';
 import 'package:flutter/material.dart';
 import 'package:cotton_app/representation/widget/loader.dart';
 
@@ -9,31 +11,31 @@ class AnalyticsScreen extends StatefulWidget {
 }
 
 class _AnalyticsScreenState extends State<AnalyticsScreen> {
-  //final AdminServices adminServices = AdminServices();
+  final AdminServices adminServices = AdminServices();
   int? totalSales;
-  //List<Sales>? earnings;
+  List<Sales>? earnings;
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   getEarnings();
-  // }
-  //
-  // getEarnings() async {
-  //   var earningData = await adminServices.getEarnings(context);
-  //   totalSales = earningData['totalEarnings'];
-  //   earnings = earningData['sales'];
-  //   setState(() {});
-  // }
+  @override
+  void initState() {
+    super.initState();
+    getEarnings();
+  }
+
+  getEarnings() async {
+    var earningData = await adminServices.getEarnings(context);
+    totalSales = earningData['totalEarnings'];
+    earnings = earningData['sales'];
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
-    return totalSales == null  // earnings == null ||
+    return earnings == null || totalSales == null // earnings == null ||
         ? const Loader()
         : Column(
       children: [
         Text(
-          '\$$totalSales',
+          'Rs$totalSales',
           style: const TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
