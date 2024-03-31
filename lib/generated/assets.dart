@@ -8,6 +8,7 @@ class Assets {
   static const String adminSalesSalesModal = 'lib/data/model/admin_sales/sales_modal.dart';
   static const String assetsAd = 'assets/ad.jpeg';
   static const String assetsCotton = 'assets/cotton.png';
+
   static const String assetsVegetable = 'assets/vegetable.png';
   static const String assetsWool = 'assets/wool.png';
   static const String authAuthServices = 'lib/data/services/auth/auth_services.dart';
@@ -32,6 +33,7 @@ class Assets {
   static const String libRoutes = 'lib/routes.dart';
   static const String marketMarketScreen = 'lib/representation/ui/market/market_screen.dart';
   static const String orderOrderModal = 'lib/data/model/order/order_modal.dart';
+  static const String orderOrderScreen = 'lib/representation/ui/order/order_screen.dart';
   static const String productProductModal = 'lib/data/model/product/product_modal.dart';
   static const String productProductServices = 'lib/data/services/product/product_services.dart';
   static const String providerUserProvider = 'lib/provider/user_provider.dart';

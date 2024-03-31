@@ -24,7 +24,7 @@ class AdminServices {
     required double quantity,
     required String category,
     required List<File> images,
-    required List<File> image,
+    //required List<File> image,
   }) async {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
 
@@ -47,7 +47,7 @@ class AdminServices {
         category: category,
         price: price,
       //  location: location,
-        image :imageUrls,
+       // image :imageUrls,
       );
 
       http.Response res = await http.post(

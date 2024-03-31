@@ -3,6 +3,7 @@ import 'package:cotton_app/constant/global_variable.dart';
 import 'package:cotton_app/data/model/product/product_modal.dart';
 import 'package:cotton_app/data/services/product/product_services.dart';
 import 'package:cotton_app/provider/user_provider.dart';
+import 'package:cotton_app/representation/ui/serch/serachScreen.dart';
 import 'package:cotton_app/representation/widget/my_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -43,9 +44,9 @@ class _ProductDetailScreenState extends State<ProductDetailPage> {
     }
   }
 
-  // void navigateToSearchScreen(String query) {
-  //   Navigator.pushNamed(context, SearchPage.routeName, arguments: query);
-  // }
+  void navigateToSearchScreen(String query) {
+    Navigator.pushNamed(context, SearchScreen.routeName, arguments: query);
+  }
 
   void addToCart() {
     productDetailsServices.addToCart(
@@ -76,7 +77,7 @@ class _ProductDetailScreenState extends State<ProductDetailPage> {
                     borderRadius: BorderRadius.circular(7),
                     elevation: 1,
                     child: TextFormField(
-                      //onFieldSubmitted: navigateToSearchScreen,
+                     // onFieldSubmitted: navigateToSearchScreen,
                       decoration: InputDecoration(
                         prefixIcon: InkWell(
                           onTap: () {},
@@ -109,7 +110,7 @@ class _ProductDetailScreenState extends State<ProductDetailPage> {
                             width: 1,
                           ),
                         ),
-                        hintText: 'Search Amazon.in',
+                        hintText: 'Search ',
                         hintStyle: const TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 17,
@@ -218,35 +219,7 @@ class _ProductDetailScreenState extends State<ProductDetailPage> {
               color: Colors.black12,
               height: 5,
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10.0),
-              child: Text(
-                'Rate The Product',
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            RatingBar.builder(
-              initialRating: myRating,
-              minRating: 1,
-              direction: Axis.horizontal,
-              allowHalfRating: true,
-              itemCount: 5,
-              itemPadding: const EdgeInsets.symmetric(horizontal: 4),
-              itemBuilder: (context, _) => const Icon(
-                Icons.star,
-                color: GlobalVariables.secondaryColor,
-              ),
-              onRatingUpdate: (rating) {
-                productDetailsServices.rateProduct(
-                  context: context,
-                  product: widget.product,
-                  rating: rating,
-                );
-              },
-            )
+
           ],
         ),
       ),

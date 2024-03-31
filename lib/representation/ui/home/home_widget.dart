@@ -168,18 +168,26 @@ class _DealOfDayState extends State<DealOfDay> {
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: product!.images
-                    .map(
-                      (e) => Image.network(
-                    e,
-                    fit: BoxFit.fitWidth,
-                    width: 100,
-                    height: 100,
+              height: 400,
+              width: 140,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: product!.images
+                        .map(
+                          (e) => Image.network(
+                        e,
+                        fit: BoxFit.fitWidth,
+                        width: 100,
+                        height: 100,
+                      ),
+                    )
+                        .toList(),
                   ),
-                )
-                    .toList(),
+
+                ],
               ),
             ),
           ),

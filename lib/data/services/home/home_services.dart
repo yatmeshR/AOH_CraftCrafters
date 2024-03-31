@@ -58,7 +58,7 @@ class HomeServices {
       // maxPrice: 0,
       // minPrice: 0,
       //location: '',
-        image: []
+        //image: []
     );
 
     try {

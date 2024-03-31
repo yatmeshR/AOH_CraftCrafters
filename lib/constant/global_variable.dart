@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-String uri = 'http://192.168.110.170:4000';
+String uri = 'http://192.168.110.170:5000';
 //import thr ip address
 
 
