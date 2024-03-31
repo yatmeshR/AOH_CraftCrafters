@@ -3,12 +3,13 @@ class Assets {
   Assets._();
 
   static const String acoountAccountServices = 'lib/data/services/acoount/account_services.dart';
+  static const String addressAddressScreen = 'lib/representation/ui/address/address_screen.dart';
   static const String addressAddressServices = 'lib/data/services/address/address_services.dart';
+  static const String addressAddressWidget = 'lib/representation/ui/address/address_widget.dart';
   static const String adminAdminServices = 'lib/data/services/admin/admin_services.dart';
   static const String adminSalesSalesModal = 'lib/data/model/admin_sales/sales_modal.dart';
   static const String assetsAd = 'assets/ad.jpeg';
   static const String assetsCotton = 'assets/cotton.png';
-
   static const String assetsVegetable = 'assets/vegetable.png';
   static const String assetsWool = 'assets/wool.png';
   static const String authAuthServices = 'lib/data/services/auth/auth_services.dart';
