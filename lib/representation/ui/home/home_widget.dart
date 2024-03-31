@@ -67,6 +67,7 @@ Widget CarouselImage(BuildContext context) {
             i,
             fit: BoxFit.cover,
             height: 200,
+            width: MediaQuery.sizeOf(context).width
           )
 
         );
@@ -128,12 +129,8 @@ class _DealOfDayState extends State<DealOfDay> {
               style: TextStyle(fontSize: 20),
             ),
           ),
-          SizedBox(height: 20,),
-          Image.network(
-            product!.images[0],
-            height: 235,
-            fit: BoxFit.fitHeight,
-          ),
+          
+          
 
           // Container(
           //   padding: const EdgeInsets.only(left: 15),
@@ -170,20 +167,24 @@ class _DealOfDayState extends State<DealOfDay> {
 
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: product!.images
-                  .map(
-                    (e) => Image.network(
-                  e,
-                  fit: BoxFit.fitWidth,
-                  width: 100,
-                  height: 100,
-                ),
-              )
-                  .toList(),
+            child: Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: product!.images
+                    .map(
+                      (e) => Image.network(
+                    e,
+                    fit: BoxFit.fitWidth,
+                    width: 100,
+                    height: 100,
+                  ),
+                )
+                    .toList(),
+              ),
             ),
           ),
+
+
 
 
         ],
@@ -194,54 +195,54 @@ class _DealOfDayState extends State<DealOfDay> {
 
 
 
-// class TopCategories extends StatelessWidget {
-//   const TopCategories({Key? key}) : super(key: key);
-//
-//   void navigateToCategoryPage(BuildContext context, String category) {
-//     Navigator.pushNamed(context, CategoryDealsScreen.routeName,
-//         arguments: category);
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return SizedBox(
-//       height: 60,
-//       child: ListView.builder(
-//         itemCount: GlobalVariables.categoryImages.length,
-//         scrollDirection: Axis.horizontal,
-//         itemExtent: 75,
-//         itemBuilder: (context, index) {
-//           return GestureDetector(
-//             onTap: () => navigateToCategoryPage(
-//               context,
-//               GlobalVariables.categoryImages[index]['title']!,
-//             ),
-//             child: Column(
-//               children: [
-//                 Container(
-//                   padding: const EdgeInsets.symmetric(horizontal: 10),
-//                   child: ClipRRect(
-//                     borderRadius: BorderRadius.circular(50),
-//                     child: Image.asset(
-//                       GlobalVariables.categoryImages[index]['image']!,
-//                       fit: BoxFit.cover,
-//                       height: 40,
-//                       width: 40,
-//                     ),
-//                   ),
-//                 ),
-//                 Text(
-//                   GlobalVariables.categoryImages[index]['title']!,
-//                   style: const TextStyle(
-//                     fontSize: 12,
-//                     fontWeight: FontWeight.w400,
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           );
-//         },
-//       ),
-//     );
-//   }
-// }
+class TopCategories extends StatelessWidget {
+  const TopCategories({Key? key}) : super(key: key);
+
+  void navigateToCategoryPage(BuildContext context, String category) {
+    Navigator.pushNamed(context, CategoryDealsScreen.routeName,
+        arguments: category);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 60,
+      child: ListView.builder(
+        itemCount: GlobalVariables.categoryImages.length,
+        scrollDirection: Axis.horizontal,
+        itemExtent: 75,
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: () => navigateToCategoryPage(
+              context,
+              GlobalVariables.categoryImages[index]['title']!,
+            ),
+            child: Column(
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(50),
+                    child: Image.asset(
+                      GlobalVariables.categoryImages[index]['image']!,
+                      fit: BoxFit.cover,
+                      height: 40,
+                      width: 40,
+                    ),
+                  ),
+                ),
+                Text(
+                  GlobalVariables.categoryImages[index]['title']!,
+                  style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
+}

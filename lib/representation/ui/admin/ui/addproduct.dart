@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cotton_app/data/services/admin/admin_services.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:cotton_app/constant/global_variable.dart';
 import 'package:cotton_app/constant/utils.dart';
@@ -20,11 +21,15 @@ class _AddProductScreenState extends State<AddProductScreen> {
   final TextEditingController productNameController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
+  // final TextEditingController minPriceController = TextEditingController();
+  // final TextEditingController maxPriceController = TextEditingController();
   final TextEditingController quantityController = TextEditingController();
+  //final TextEditingController locationController = TextEditingController();
   final AdminServices adminServices = AdminServices();
 
-  String category = 'Mobiles';
+  String category = 'Cotton';
   List<File> images = [];
+  List<File> image = [];
   final _addProductFormKey = GlobalKey<FormState>();
 
   @override
@@ -37,11 +42,9 @@ class _AddProductScreenState extends State<AddProductScreen> {
   }
 
   List<String> productCategories = [
-    'Mobiles',
-    'Essentials',
-    'Appliances',
-    'Books',
-    'Fashion'
+    'Cotton',
+    'Wool',
+    'Vegetables',
   ];
 
   void sellProduct() {
@@ -51,9 +54,13 @@ class _AddProductScreenState extends State<AddProductScreen> {
         name: productNameController.text,
         description: descriptionController.text,
         price: double.parse(priceController.text),
+        // maxPrice: double.parse(maxPriceController.text),
+        // minPrice: double.parse(minPriceController.text),
         quantity: double.parse(quantityController.text),
+        //location: locationController.text,
         category: category,
         images: images,
+        image: image
       );
     }
   }
@@ -62,6 +69,13 @@ class _AddProductScreenState extends State<AddProductScreen> {
     var res = await pickImages();
     setState(() {
       images = res;
+    });
+  }
+
+  void selectsImage() async {
+    var res = await pickImage();
+    setState(() {
+      image = res;
     });
   }
 
@@ -155,14 +169,82 @@ class _AddProductScreenState extends State<AddProductScreen> {
                   maxLines: 7,
                 ),
                 const SizedBox(height: 10),
+                // CustomTextField(
+                //   controller: minPriceController,
+                //   hintText: ' Minimum Price',
+                // ),
+                // const SizedBox(height: 10),
                 CustomTextField(
                   controller: priceController,
                   hintText: 'Price',
                 ),
+
                 const SizedBox(height: 10),
+                // CustomTextField(
+                //   controller: maxPriceController,
+                //   hintText: ' Maximum Price',
+                // ),
+                // const SizedBox(height: 10),
                 CustomTextField(
                   controller: quantityController,
                   hintText: 'Quantity',
+                ),
+                const SizedBox(height: 10),
+                // CustomTextField(
+                //   controller: locationController,
+                //   hintText: 'Location',
+                // ),
+                // const SizedBox(height: 20),
+                image.isNotEmpty
+                    ? CarouselSlider(
+                  items: image.map(
+                        (i) {
+                      return Builder(
+                        builder: (BuildContext context) => Image.file(
+                          i,
+                          fit: BoxFit.cover,
+                          height: 200,
+                        ),
+                      );
+                    },
+                  ).toList(),
+                  options: CarouselOptions(
+                    viewportFraction: 1,
+                    height: 200,
+                  ),
+                ):
+                     GestureDetector(
+                  onTap: selectsImage,
+                  child: DottedBorder(
+                    borderType: BorderType.RRect,
+                    radius: const Radius.circular(10),
+                    dashPattern: const [10, 4],
+                    strokeCap: StrokeCap.round,
+                    child: Container(
+                      width: double.infinity,
+                      height: 150,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(
+                            Icons.folder_open,
+                            size: 40,
+                          ),
+                          const SizedBox(height: 15),
+                          Text(
+                            'Upload the product certificate',
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: Colors.grey.shade400,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
                 const SizedBox(height: 10),
                 SizedBox(
@@ -195,4 +277,22 @@ class _AddProductScreenState extends State<AddProductScreen> {
       ),
     );
   }
+}
+
+Future<List<File>> pickImage() async {
+  List<File> images = [];
+  try {
+    var files = await FilePicker.platform.pickFiles(
+      type: FileType.image,
+      allowMultiple: true,
+    );
+    if (files != null && files.files.isNotEmpty) {
+      for (int i = 0; i < files.files.length; i++) {
+        images.add(File(files.files[i].path!));
+      }
+    }
+  } catch (e) {
+    debugPrint(e.toString());
+  }
+  return images;
 }

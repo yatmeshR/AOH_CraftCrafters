@@ -55,6 +55,10 @@ class HomeServices {
       images: [],
       category: '',
       price: 0,
+      // maxPrice: 0,
+      // minPrice: 0,
+      //location: '',
+        image: []
     );
 
     try {

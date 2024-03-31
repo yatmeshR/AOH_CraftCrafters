@@ -1,24 +1,41 @@
 import 'package:cotton_app/constant/global_variable.dart';
+import 'package:cotton_app/provider/user_provider.dart';
+import 'package:cotton_app/representation/ui/cart/cart_product.dart';
+import 'package:cotton_app/representation/ui/cart/cart_total.dart';
 import 'package:cotton_app/representation/ui/home/home_widget.dart';
+import 'package:cotton_app/representation/ui/serch/serachScreen.dart';
+import 'package:cotton_app/representation/widget/my_button.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import '../serch/serachScreen.dart';
-
-class HomeScreen extends StatefulWidget {
-  static const String routeName = '/home';
-  const HomeScreen({Key? key}) : super(key: key);
+class CartScreen extends StatefulWidget {
+  const CartScreen({Key? key}) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<CartScreen> createState() => _CartScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _CartScreenState extends State<CartScreen> {
   void navigateToSearchScreen(String query) {
     Navigator.pushNamed(context, SearchScreen.routeName, arguments: query);
   }
 
+  // void navigateToAddress(int sum) {
+  //   Navigator.pushNamed(
+  //     context,
+  //     AddressScreen.routeName,
+  //     arguments: sum.toString(),
+  //   );
+  // }
+
   @override
   Widget build(BuildContext context) {
+    final user = context.watch<UserProvider>().user;
+    int sum = 0;
+    user.cart
+        .map((e) => sum += e['quantity'] * e['product']['price'] as int)
+        .toList();
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
@@ -39,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     borderRadius: BorderRadius.circular(7),
                     elevation: 1,
                     child: TextFormField(
-                      // onFieldSubmitted: navigateToSearchScreen,
+                      onFieldSubmitted: navigateToSearchScreen,
                       decoration: InputDecoration(
                         prefixIcon: InkWell(
                           onTap: () {},
@@ -72,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             width: 1,
                           ),
                         ),
-                        hintText: 'Search ',
+                        hintText: 'Search Amazon.in',
                         hintStyle: const TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 17,
@@ -96,11 +113,30 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           children: [
             AddressBox(context),
-            SizedBox(height: 10),
-            TopCategories(),
-            SizedBox(height: 20),
-            CarouselImage(context),
-            DealOfDay(),
+            const CartSubtotal(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CustomButton(
+                text: 'Proceed to Buy (${user.cart.length} items)',
+                onTap: () {}, //=> navigateToAddress(sum),
+                color: Colors.yellow[600],
+              ),
+            ),
+            const SizedBox(height: 15),
+            Container(
+              color: Colors.black12.withOpacity(0.08),
+              height: 1,
+            ),
+            const SizedBox(height: 5),
+            ListView.builder(
+              itemCount: user.cart.length,
+              shrinkWrap: true,
+              itemBuilder: (context, index) {
+                return CartProduct(
+                  index: index,
+                );
+              },
+            ),
           ],
         ),
       ),

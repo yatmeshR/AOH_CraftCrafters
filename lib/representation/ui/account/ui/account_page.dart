@@ -1,4 +1,5 @@
 import 'package:cotton_app/constant/global_variable.dart';
+import 'package:cotton_app/representation/ui/account/widget/account.dart';
 import 'package:flutter/material.dart';
 
 class AccountScreen extends StatelessWidget {
@@ -47,12 +48,12 @@ class AccountScreen extends StatelessWidget {
       ),
       body: Column(
         children: const [
-          // BelowAppBar(),
-          // SizedBox(height: 10),
-          // TopButtons(),
-          // SizedBox(height: 20),
-          // Orders(),
-          Text('Hello')
+          BelowAppBar(),
+          SizedBox(height: 10),
+          TopButtons(),
+          SizedBox(height: 20),
+          Orders(),
+
         ],
       ),
     );

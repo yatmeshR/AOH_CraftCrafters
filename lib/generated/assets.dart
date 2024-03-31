@@ -3,13 +3,21 @@ class Assets {
   Assets._();
 
   static const String acoountAccountServices = 'lib/data/services/acoount/account_services.dart';
+  static const String addressAddressServices = 'lib/data/services/address/address_services.dart';
   static const String adminAdminServices = 'lib/data/services/admin/admin_services.dart';
   static const String adminSalesSalesModal = 'lib/data/model/admin_sales/sales_modal.dart';
+  static const String assetsAd = 'assets/ad.jpeg';
   static const String assetsCotton = 'assets/cotton.png';
+  static const String assetsVegetable = 'assets/vegetable.png';
+  static const String assetsWool = 'assets/wool.png';
   static const String authAuthServices = 'lib/data/services/auth/auth_services.dart';
   static const String authLogOrReg = 'lib/representation/ui/auth/log_or_reg.dart';
   static const String authLoginScreen = 'lib/representation/ui/auth/login_screen.dart';
   static const String authRegScreen = 'lib/representation/ui/auth/reg_screen.dart';
+  static const String cartCartProduct = 'lib/representation/ui/cart/cart_product.dart';
+  static const String cartCartScreen = 'lib/representation/ui/cart/cart_screen.dart';
+  static const String cartCartServices = 'lib/data/services/cart/cart_services.dart';
+  static const String cartCartTotal = 'lib/representation/ui/cart/cart_total.dart';
   static const String constantErrorHandling = 'lib/constant/error_handling.dart';
   static const String constantGlobalVariable = 'lib/constant/global_variable.dart';
   static const String constantUtils = 'lib/constant/utils.dart';
@@ -28,6 +36,9 @@ class Assets {
   static const String productProductServices = 'lib/data/services/product/product_services.dart';
   static const String providerUserProvider = 'lib/provider/user_provider.dart';
   static const String ratingRatingModal = 'lib/data/model/rating/rating_modal.dart';
+  static const String searchSearchServices = 'lib/data/services/search/search_Services.dart';
+  static const String serchSerachScreen = 'lib/representation/ui/serch/serachScreen.dart';
+  static const String serchSerachWidget = 'lib/representation/ui/serch/serach_widget.dart';
   static const String uiAccountPage = 'lib/representation/ui/account/ui/account_page.dart';
   static const String uiAddproduct = 'lib/representation/ui/admin/ui/addproduct.dart';
   static const String uiAdminScreen = 'lib/representation/ui/admin/ui/admin_screen.dart';
@@ -43,5 +54,6 @@ class Assets {
   static const String widgetMyTextfield = 'lib/representation/widget/my_textfield.dart';
   static const String widgetProductChart = 'lib/representation/ui/admin/widget/product_chart.dart';
   static const String widgetSnackBar = 'lib/representation/widget/snackBar.dart';
+  static const String widgetStars = 'lib/representation/widget/stars.dart';
 
 }

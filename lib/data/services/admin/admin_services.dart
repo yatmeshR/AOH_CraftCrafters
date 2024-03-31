@@ -1,5 +1,3 @@
-
-
 import 'dart:convert';
 import 'dart:io';
 
@@ -22,9 +20,11 @@ class AdminServices {
     required String name,
     required String description,
     required double price,
+    //required String location,
     required double quantity,
     required String category,
     required List<File> images,
+    required List<File> image,
   }) async {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
 
@@ -46,6 +46,8 @@ class AdminServices {
         images: imageUrls,
         category: category,
         price: price,
+      //  location: location,
+        image :imageUrls,
       );
 
       http.Response res = await http.post(
@@ -76,7 +78,7 @@ class AdminServices {
     List<Product> productList = [];
     try {
       http.Response res =
-      await http.get(Uri.parse('$uri/admin/get-products'), headers: {
+          await http.get(Uri.parse('$uri/admin/get-products'), headers: {
         'Content-Type': 'application/json; charset=UTF-8',
         'x-auth-token': userProvider.user.token,
       });
@@ -138,7 +140,7 @@ class AdminServices {
     List<Order> orderList = [];
     try {
       http.Response res =
-      await http.get(Uri.parse('$uri/admin/get-orders'), headers: {
+          await http.get(Uri.parse('$uri/admin/get-orders'), headers: {
         'Content-Type': 'application/json; charset=UTF-8',
         'x-auth-token': userProvider.user.token,
       });
@@ -201,7 +203,7 @@ class AdminServices {
     int totalEarning = 0;
     try {
       http.Response res =
-      await http.get(Uri.parse('$uri/admin/analytics'), headers: {
+          await http.get(Uri.parse('$uri/admin/analytics'), headers: {
         'Content-Type': 'application/json; charset=UTF-8',
         'x-auth-token': userProvider.user.token,
       });

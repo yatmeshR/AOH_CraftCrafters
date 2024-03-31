@@ -1,5 +1,7 @@
 import 'package:cotton_app/constant/global_variable.dart';
 import 'package:cotton_app/provider/user_provider.dart';
+import 'package:cotton_app/representation/ui/account/ui/account_page.dart';
+import 'package:cotton_app/representation/ui/cart/cart_screen.dart';
 import 'package:cotton_app/representation/ui/home/home_screen.dart';
 import 'package:cotton_app/representation/ui/market/market_screen.dart';
 import 'package:flutter/material.dart';
@@ -20,8 +22,8 @@ class _BottomBarState extends State<BottomBar> {
 
   List<Widget> pages = [
     const HomeScreen(),
-    const MarketScreen(),
-    // const CartPage(),
+    const AccountScreen(),
+    const CartScreen(),
   ];
 
   void updatePage(int page) {
